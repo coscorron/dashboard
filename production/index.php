@@ -24,6 +24,15 @@
               colors: ['green']
             };
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            function selectHandler() {
+                 var selectedItem = chart.getSelection()[0];
+                 if (selectedItem) {
+                    var topping = data.getValue(selectedItem.row, 0);
+                    form1.action = 'proyectos.php';
+                    form1.submit();
+                 }
+               }
+            google.visualization.events.addListener(chart, 'select', selectHandler);
             chart.draw(data, options);
           }
 
